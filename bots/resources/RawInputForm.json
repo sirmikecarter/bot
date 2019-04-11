@@ -1,0 +1,237 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 2,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Request for Architecture Work (RAW)",
+              "weight": "bolder",
+              "size": "medium"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Title",
+              "wrap": true
+            },
+            {
+              "type": "Input.Text",
+              "id": "rawTitle",
+              "placeholder": "Title"
+            },
+            {
+              "type": "TextBlock",
+              "text": "What is the Business Problem",
+              "wrap": true
+            },
+            {
+              "type": "Input.Text",
+              "id": "rawBusinessProblem",
+              "placeholder": "What is the Business Problem you are trying to solve?"
+            },
+            {
+              "type": "TextBlock",
+              "text": "High-Level Requirements"
+            },
+            {
+              "type": "Input.Text",
+              "id": "rawRequirements",
+              "placeholder": "What are the High-Level Requirements you are trying satisfy?"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Additional Information"
+            },
+            {
+              "type": "Input.Text",
+              "placeholder": "Additional Information",
+              "style": "text",
+              "isMultiline": true,
+              "maxLength": 0,
+              "id": "rawAdditionalInformation"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Request Purpose"
+            },
+            {
+              "type": "Input.ChoiceSet",
+              "id": "rawRequestPurpose",
+              "style": "expanded",
+              "value": "1",
+              "choices": [
+                {
+                  "title": "Architecture - Identify and approve products",
+                  "value": "1"
+                },
+                {
+                  "title": "Market Analysis - Research Technology",
+                  "value": "2"
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "text": "Request Type"
+            },
+            {
+              "type": "Input.ChoiceSet",
+              "id": "rawRequestType",
+              "style": "expanded",
+              "value": "1",
+              "choices": [
+                {
+                  "title": "New",
+                  "value": "1"
+                },
+                {
+                  "title": "Change",
+                  "value": "2"
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "text": "Request Category"
+            },
+            {
+              "type": "Input.ChoiceSet",
+              "id": "rawRequestCategory",
+              "isMultiSelect": true,
+              "value": "",
+              "choices": [
+                {
+                  "title": "Software Purpose",
+                  "value": "1"
+                },
+                {
+                  "title": "Software Version Upgrade",
+                  "value": "2"
+                },
+                {
+                  "title": "Custom Solution",
+                  "value": "3"
+                },
+                {
+                  "title": "Policy",
+                  "value": "4"
+                },
+                {
+                  "title": "Research",
+                  "value": "5"
+                },
+                {
+                  "title": "Subscription",
+                  "value": "6"
+                },
+                {
+                  "title": "Architecture Work",
+                  "value": "7"
+                },
+                {
+                  "title": "Disaster Resilience",
+                  "value": "8"
+                },
+                {
+                  "title": "Other",
+                  "value": "9"
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "text": "Project Phase"
+            },
+            {
+              "type": "Input.ChoiceSet",
+              "id": "rawProjectPhase",
+              "style": "expanded",
+              "value": "1",
+              "choices": [
+                {
+                  "title": "Concept",
+                  "value": "1"
+                },
+                {
+                  "title": "Formal Budget Request",
+                  "value": "2"
+                },
+                {
+                  "title": "Project Approved",
+                  "value": "3"
+                },
+                {
+                  "title": "Operations",
+                  "value": "4"
+                },
+                {
+                  "title": "Not Applicable",
+                  "value": "5"
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "text": "Line of Business"
+            },
+            {
+              "type": "Input.ChoiceSet",
+              "id": "rawLineOfBusiness",
+              "isMultiSelect": true,
+              "value": "",
+              "choices": [
+                {
+                  "title": "Pension",
+                  "value": "1"
+                },
+                {
+                  "title": "Health",
+                  "value": "2"
+                },
+                {
+                  "title": "Investment",
+                  "value": "3"
+                },
+                {
+                  "title": "Administration",
+                  "value": "4"
+                }
+              ]
+            },
+            {
+              "type": "Input.Toggle",
+              "title": "I have my division chief's approval",
+              "valueOn": "true",
+              "valueOff": "false",
+              "id": "AcceptsTerms"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 1,
+          "items": [
+            {
+              "type": "Image",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Diver_Silhouette%2C_Great_Barrier_Reef.jpg",
+              "size": "auto"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit"
+    }
+  ]
+}
