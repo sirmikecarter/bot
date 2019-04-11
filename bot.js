@@ -154,8 +154,6 @@ class DispatchBot {
                 //     attachments: [CardFactory.adaptiveCard(WelcomeCard)]
                 //   });
 
-                await turnContext.sendActivity(`Loading Chatbot...`);
-
                 for (var idx in turnContext.activity.membersAdded) {
                     // Greet anyone that was not the target (recipient) of this message
                     // the 'bot' is the recipient for events from the channel,
