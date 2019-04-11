@@ -144,16 +144,19 @@ class DispatchBot {
             // the conversation.
             // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
 
+            const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
+
+            await turnContext.sendActivity({
+                //text: '',
+                attachments: [CardFactory.adaptiveCard(WelcomeCard)]
+              });
+
+
             // Do we have any new members added to the conversation?
             if (turnContext.activity.membersAdded.length !== 0) {
                 // Iterate over all new members added to the conversation
-                const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
 
-                await turnContext.sendActivity({
-                    //text: '',
-                    attachments: [CardFactory.adaptiveCard(WelcomeCard)]
-                  });
-                  
+
                 for (var idx in turnContext.activity.membersAdded) {
                     // Greet anyone that was not the target (recipient) of this message
                     // the 'bot' is the recipient for events from the channel,
