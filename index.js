@@ -3,28 +3,29 @@
 
 // index.js is used to setup and configure your bot
 
-// Import required pckages
+// Import required packages
 const path = require('path');
 const restify = require('restify');
 
 // Import required bot services. See https://aka.ms/bot-services to learn more about the different parts of a bot.
 const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = require('botbuilder');
+// Import required bot configuration.
 
-// This bot's main dialog.
-const { DialogAndWelcomeBot } = require('./bots/dialogAndWelcomeBot');
-const { MainDialog } = require('./dialogs/mainDialog');
 
-// Note: Ensure you have a .env file and include LuisAppId, LuisAPIKey and LuisAPIHostName.
+const { DispatchBot } = require('./bot');
+
+// Read botFilePath and botFileSecret from .env file
+// Note: Ensure you have a .env file and include botFilePath and botFileSecret.
+
 const ENV_FILE = path.join(__dirname, '.env');
 require('dotenv').config({ path: ENV_FILE });
 
+
 // Create adapter.
-// See https://aka.ms/about-bot-adapter to learn more about adapters.
+// See https://aka.ms/about-bot-adapter to learn more about .bot file its use and bot configuration .
 const adapter = new BotFrameworkAdapter({
     appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword,
-    channelService: process.env.ChannelService,
-    openIdMetadata: process.env.BotOpenIdMetadata
+    appPassword: process.env.MicrosoftAppPassword
 });
 
 // Catch-all for errors.
@@ -64,19 +65,21 @@ userState = new UserState(memoryStorage);
 // conversationState = new ConversationState(blobStorage);
 // userState = new UserState(blobStorage);
 
-// Pass in a logger to the bot. For this sample, the logger is the console, but alternatives such as Application Insights and Event Hub exist for storing the logs of the bot.
-const logger = console;
-
 // Create the main dialog.
-const dialog = new MainDialog(logger);
-const bot = new DialogAndWelcomeBot(conversationState, userState, dialog, logger);
+let bot;
+try {
+    bot = new DispatchBot(conversationState, userState);
+} catch (err) {
+    console.error(`[botInitializationError]: ${ err }`);
+    process.exit();
+}
 
 // Create HTTP server
 let server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function() {
     console.log(`\n${ server.name } listening to ${ server.url }`);
     console.log(`\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator`);
-    console.log(`\nSee https://aka.ms/connect-to-bot for more information`);
+    console.log(`\nTo talk to your bot, open nlp-with-dispatch.bot file in the Emulator`);
 });
 
 // Listen for incoming activities and route them to your bot main dialog.
@@ -84,6 +87,6 @@ server.post('/api/messages', (req, res) => {
     // Route received a request to adapter for processing
     adapter.processActivity(req, res, async (turnContext) => {
         // route to bot activity handler.
-        await bot.run(turnContext);
+        await bot.onTurn(turnContext);
     });
 });
