@@ -98,13 +98,6 @@ class DispatchBot {
      */
     async onTurn(turnContext) {
 
-      const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
-
-      await turnContext.sendActivity({
-          //text: '',
-          attachments: [CardFactory.adaptiveCard(WelcomeCard)]
-        });
-
         if (turnContext.activity.type === ActivityTypes.Message) {
             // determine which dialog should fulfill this request
             // call the dispatch LUIS model to get results.
@@ -167,12 +160,12 @@ class DispatchBot {
                         //await turnContext.sendActivity(`Hello, this is R2-D2 - your virtual assistant.`);
                         //await turnContext.sendActivity(`I can help you submit a Request for Architecture Work (RAW), check the weather forecast, answer your questions about CalPERS or even carry on a converstation with you`);
                         //await turnContext.sendActivity(`What can I help with you today?`);
-                        // const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
-                        //
-                        // await turnContext.sendActivity({
-                        //     //text: '',
-                        //     attachments: [CardFactory.adaptiveCard(WelcomeCard)]
-                        //   });
+                        const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
+
+                        await turnContext.sendActivity({
+                            //text: '',
+                            attachments: [CardFactory.adaptiveCard(WelcomeCard)]
+                          });
 
 
 
