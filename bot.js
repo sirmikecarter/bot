@@ -153,6 +153,7 @@ class DispatchBot {
                     //text: '',
                     attachments: [CardFactory.adaptiveCard(WelcomeCard)]
                   });
+                  
                 for (var idx in turnContext.activity.membersAdded) {
                     // Greet anyone that was not the target (recipient) of this message
                     // the 'bot' is the recipient for events from the channel,
@@ -166,12 +167,12 @@ class DispatchBot {
                         //await turnContext.sendActivity(`Hello, this is R2-D2 - your virtual assistant.`);
                         //await turnContext.sendActivity(`I can help you submit a Request for Architecture Work (RAW), check the weather forecast, answer your questions about CalPERS or even carry on a converstation with you`);
                         //await turnContext.sendActivity(`What can I help with you today?`);
-                        const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
-
-                        await turnContext.sendActivity({
-                            //text: '',
-                            attachments: [CardFactory.adaptiveCard(WelcomeCard)]
-                          });
+                        // const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
+                        //
+                        // await turnContext.sendActivity({
+                        //     //text: '',
+                        //     attachments: [CardFactory.adaptiveCard(WelcomeCard)]
+                        //   });
 
 
 
